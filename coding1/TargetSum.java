@@ -1,4 +1,4 @@
-package algorithmbasic.leetcode.p1;
+package algorithmbasic.leetcode.coding1;
 
 import java.util.HashMap;
 

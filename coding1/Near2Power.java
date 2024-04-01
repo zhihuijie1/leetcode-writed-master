@@ -1,4 +1,4 @@
-package algorithmbasic.leetcode.p1;
+package algorithmbasic.leetcode.coding1;
 
 // 已知n是正数
 // 返回大于等于，且最接近n的，2的某次方的值

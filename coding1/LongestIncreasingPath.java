@@ -1,4 +1,4 @@
-package algorithmbasic.leetcode.p1;
+package algorithmbasic.leetcode.coding1;
 
 //https://leetcode.com/problems/longest-increasing-path-in-a-matrix/description/
 public class LongestIncreasingPath {
