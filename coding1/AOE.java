@@ -27,16 +27,22 @@ public class AOE {
             }
             cover[i] = r - 1;
         }
+        //5 2 1 | 9 8 4| 6 2 4
+        //3 5 7
+        //0 2 4
         // x[i]:当前最左侧的位置
         // cover[i]:以x[i]位置为最左侧影响到的最右侧位置
         SegmentTree segmentTree = new SegmentTree(hp);
         segmentTree.build(1, n, 1);
+        int ans = 0;
         for (int i = 1; i <= n; i++) {
-            int leftHp = segmentTree.query(i, i, 1, n, 1);
-            if (leftHp > 0) {
-
+            int leftHP = segmentTree.query(i, i, 1, n, 1);
+            if (leftHP > 0) {
+                ans += leftHP;
+                segmentTree.add(i, cover[i - 1] + 1, -leftHP, 1, n, 1);
             }
         }
+        return ans;
     }
 
     //实现区间内的“增” “查” “改”
