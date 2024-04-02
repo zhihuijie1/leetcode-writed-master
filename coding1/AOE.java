@@ -1,5 +1,7 @@
 package algorithmbasic.leetcode.coding1;
 
+import java.util.Arrays;
+
 /*
  * 给定两个数组x和hp，长度都是N。
  * x数组一定是有序的，x[i]表示i号怪兽在x轴上的位置
@@ -52,10 +54,12 @@ public class AOE {
         private int[] arr;//对传入数组的备份，从下标1开始计数
         private int[] lazy;
         private int[] sum;
-
         public SegmentTree(int[] hp) {
             N = hp.length;
             arr = new int[N + 1];
+            for (int i = 1; i <= N; i++) {
+                arr[i] = hp[i - 1];
+            }
             lazy = new int[N << 2];
             sum = new int[N << 2];
         }
@@ -68,7 +72,7 @@ public class AOE {
             }
             int mid = (l + r) >> 1;
             build(l, mid, rt << 1);
-            build(mid + 1, r, (rt << 1) | 1);
+            build(mid + 1, r, rt << 1 | 1);
             pushUp(rt);
         }
 
@@ -77,19 +81,19 @@ public class AOE {
         //rt 根节点
         public void add(int L, int R, int C, int l, int r, int rt) {
             if (L <= l && R >= r) {
-                sum[rt] += (R - L + 1) * C;
+                sum[rt] += C * (r - l + 1); //---- 注意
                 lazy[rt] += C;
                 return;
             }
-            int mid = (L + R) >> 1;
-            pushDown(rt, mid - L + 1, R - mid);
+            int mid = (l + r) >> 1;
+            pushDown(rt, mid - l + 1, r - mid);
             if (L <= mid) {
                 add(L, R, C, l, mid, rt << 1);
             }
             if (R > mid) {
-                add(L, R, C, mid + 1, R, rt << 1 | 1);
+                add(L, R, C, mid + 1, r, rt << 1 | 1);
             }
-            sum[rt] = sum[rt >> 1] + sum[rt << 1 | 1];
+            pushUp(rt);
         }
 
         public void pushDown(int rt, int lnumber, int rnumber) {
@@ -102,8 +106,8 @@ public class AOE {
             lazy[rt] = 0;
         }
 
-        public int pushUp(int rt) {
-            return sum[rt << 1] + sum[rt << 1 | 1];
+        public void pushUp(int rt) {
+            sum[rt] = sum[rt << 1] + sum[rt << 1 | 1];
         }
 
         public int query(int L, int R, int l, int r, int rt) {
@@ -111,7 +115,7 @@ public class AOE {
                 return sum[rt];
             }
             int mid = (l + r) >> 1;
-            pushDown(mid, mid - l + 1, r - mid);
+            pushDown(rt, mid - l + 1, r - mid);
             int ans = 0;
             if (L <= mid) {
                 ans += query(L, R, l, mid, rt << 1);
