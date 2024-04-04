@@ -17,7 +17,7 @@ import java.util.Comparator;
  */
 public class findMinArrowShots {
     public int findMinArrowShots(int[][] points) {
-        return intervalSchedule((points);
+        return intervalSchedule(points);
     }
 
 
@@ -45,12 +45,5 @@ public class findMinArrowShots {
             }
         }
         return count;
-    }
-
-    public static void main(String[] args) {
-         int[][] arr = {{-2147483646,-2147483645},{2147483646,2147483647}};
-        //int[][] arr = {{10,16},{2,8},{1,6},{7,12}};
-        int ans = intervalSchedule(arr);
-        System.out.println(ans);
     }
 }
