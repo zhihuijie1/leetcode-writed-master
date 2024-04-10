@@ -65,6 +65,7 @@ public class code3_ReceiveAndPrintOrderLine {
 
             //查看当前这个节点是不是缺失节点 如果是 那就打印然后更新缺失节点
             //缺失节点一定是头节点
+            //更新头表与尾表
             if (id == lostPoint) {
                 Node lost = headMap.get(lostPoint);
                 Node p = lost;
