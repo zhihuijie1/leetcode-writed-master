@@ -100,6 +100,5 @@ public class code3_ReceiveAndPrintOrderLine {
         box.receive(12, "L"); // - 12
         box.receive(13, "M"); // - 12 13
         box.receive(11, "K"); // 11 12 13 -> print, trigger is 11
-
     }
 }
