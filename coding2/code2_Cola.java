@@ -25,7 +25,7 @@ public class code2_Cola {
     public static int putTimes(int m, int a, int b, int c, int x) {
         //统一一下商品的单价与数量 -- 一般使用的方法是数组或内部类
         int[] qian = {100, 50, 10};
-        int[] zhang = {a, b, c};
+        int[] zhang = {c, b, a};
         int preQianZhang = 0;// 之前面值的钱还剩下多少总张数
         int preQianRest = 0;// 之前面值的钱还剩下多少总钱数
         int puts = 0;//次数
@@ -44,7 +44,7 @@ public class code2_Cola {
             } else {
                 //当前面值的总钱数 + 之前剩余面值的总钱数之和 可以购买第一瓶可乐
                 //然后将找回的零钱分发下去，
-                giveRest(qian, zhang, i + 1, (preQianRest + qian[i] * curZhang) - x, 1);
+                giveRest(qian, zhang, i + 1, (preQianRest + qian[i] * curZhang) - x, 1);/**--------------- great idea */
                 //当前面值还剩几张
                 zhang[i] = zhang[i] - curZhang;
                 //更新买第一瓶可乐需要的次数
@@ -54,7 +54,7 @@ public class code2_Cola {
             //然后再用当前的面值的钱来买可乐，将找回的零钱分发下去，然后更新剩余的钱数与面值
 
             //用当前的面值购买一瓶可乐需要多少张,向上取整
-            int curBuyOneZhang = (x + zhang[i] - 1) / zhang[i];
+            int curBuyOneZhang = (x + qian[i] - 1) / qian[i];
             //当前面值可以买几瓶
             int curCanBuyOneNumbers = Math.min(zhang[i] / curBuyOneZhang, m);
             //将找回的零钱分发下去
@@ -73,12 +73,93 @@ public class code2_Cola {
 
     //i: 最大的零钱面值下标
     //oneTimeRest: 找回的零钱
-    //times：待用该函数的面值可购买的可乐瓶数
+    //times: 有几次找零行为
     public static void giveRest(int[] qian, int[] zhang, int i, int oneTimeRest, int times) {
         for (int j = i; j < 3; j++) {
             int curzhang = oneTimeRest / qian[j];
-            zhang[j] += curzhang;
-            oneTimeRest -= curzhang * qian[j];
+            zhang[j] += curzhang * times;/**--------------- great idea */
+            oneTimeRest %= qian[j]; /**--------------- great idea */
+        }
+    }
+
+    // ----------------- for  test ------------------
+
+    public static void main(String[] args) {
+        int testTime = 1000;
+        int zhangMax = 10;
+        int colaMax = 10;
+        int priceMax = 20;
+        System.out.println("如果错误会打印错误数据，否则就是正确");
+        System.out.println("test begin");
+        for (int i = 0; i < testTime; i++) {
+            int m = (int) (Math.random() * colaMax);
+            int a = (int) (Math.random() * zhangMax);
+            int b = (int) (Math.random() * zhangMax);
+            int c = (int) (Math.random() * zhangMax);
+            int x = ((int) (Math.random() * priceMax) + 1) * 10;
+            int ans1 = putTimes(m, a, b, c, x);
+            int ans2 = right(m, a, b, c, x);
+            if (ans1 != ans2) {
+                System.out.println("int m = " + m + ";");
+                System.out.println("int a = " + a + ";");
+                System.out.println("int b = " + b + ";");
+                System.out.println("int c = " + c + ";");
+                System.out.println("int x = " + x + ";");
+                System.out.println("wrong is -- " + ans1);
+                System.out.println("right is -- " + ans2);
+                break;
+            }
+        }
+        System.out.println("test end");
+    }
+
+    // 暴力尝试，为了验证正式方法而已
+    public static int right(int m, int a, int b, int c, int x) {
+        int[] qian = {100, 50, 10};
+        int[] zhang = {c, b, a};
+        int puts = 0;
+        while (m != 0) {
+            int cur = buy(qian, zhang, x);
+            if (cur == -1) {
+                return -1;
+            }
+            puts += cur;
+            m--;
+        }
+        return puts;
+    }
+
+    public static int buy(int[] qian, int[] zhang, int rest) {
+        int first = -1;
+        for (int i = 0; i < 3; i++) {
+            if (zhang[i] != 0) {
+                first = i;
+                break;
+            }
+        }
+        if (first == -1) {
+            return -1;
+        }
+        if (qian[first] >= rest) {
+            zhang[first]--;
+            giveRest(qian, zhang, first + 1, qian[first] - rest, 1);
+            return 1;
+        } else {
+            zhang[first]--;
+            int next = buy(qian, zhang, rest - qian[first]);
+            if (next == -1) {
+                return -1;
+            }
+            return 1 + next;
         }
     }
 }
+//test begin
+//int m = 7;
+//int a = 5;
+//int b = 4;
+//int c = 9;
+//int x = 30;
+//wrong is -- 16
+//right is -- 7
+//test end
