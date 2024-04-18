@@ -3,17 +3,14 @@ package algorithmbasic.leetcode.coding3;
 import java.util.*;
 
 /*
-  给定三个参数
-  二叉树的头节点head，树上某个节点target,正数K从target开始,可以向上走或者向下走
-  返回与target的距离是K的所有节点
+ 给定三个参数
+ 二叉树的头节点head，树上某个节点target,正数K从target开始,可以向上走或者向下走
+ 返回与target的距离是K的所有节点
 */
-
 /*
-  思路: 构建所有节点的头节点map，因为原始的二叉树是不可以向上移动的
-        图的宽度优先遍历，一层一层的遍历
+ 思路: 构建所有节点的头节点map，因为原始的二叉树是不可以向上移动的
+       图的宽度优先遍历，一层一层的遍历
 */
-
-
 public class code8_DistanceKNodes {
     public static class Node {
         public Node left;
@@ -122,6 +119,14 @@ public class code8_DistanceKNodes {
         for (Node o1 : ans) {
             System.out.println(o1.value);
         }
-
     }
 }
+
+/*
+* 给定一个数组ars，代表每个人的能力值
+。再给定一个非负数k
+如果两个人能力差值正好为k，那么可以凑在一起比赛
+一局比赛只有两个人
+返回最多可以同时有多少场比赛
+
+* */

@@ -23,6 +23,8 @@ public class code4_Drive {
     //return --> 返回index位置(包括index位置)以后的最高收入
     //index --> 指向income数组的当前位置
     //aRest --> A区域还差几人
+
+    //设计参数: index位置以后的最好结果已经抓到了，现在需要需要判断index位置
     public static int process(int[][] income, int index, int aRest) {
         if (index == income.length) {
             return 0;
