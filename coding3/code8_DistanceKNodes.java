@@ -88,45 +88,4 @@ public class code8_DistanceKNodes {
         }
         return list;
     }
-
-
-
-    public static void main(String[] args) {
-        Node n0 = new Node(0);
-        Node n1 = new Node(1);
-        Node n2 = new Node(2);
-        Node n3 = new Node(3);
-        Node n4 = new Node(4);
-        Node n5 = new Node(5);
-        Node n6 = new Node(6);
-        Node n7 = new Node(7);
-        Node n8 = new Node(8);
-
-        n3.left = n5;
-        n3.right = n1;
-        n5.left = n6;
-        n5.right = n2;
-        n1.left = n0;
-        n1.right = n8;
-        n2.left = n7;
-        n2.right = n4;
-
-        Node root = n3;
-        Node target = n5;
-        int K = 2;
-
-        List<Node> ans = distanceKNodes(root, target, K);
-        for (Node o1 : ans) {
-            System.out.println(o1.value);
-        }
-    }
 }
-
-/*
-* 给定一个数组ars，代表每个人的能力值
-。再给定一个非负数k
-如果两个人能力差值正好为k，那么可以凑在一起比赛
-一局比赛只有两个人
-返回最多可以同时有多少场比赛
-
-* */
