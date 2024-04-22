@@ -31,9 +31,9 @@ public class Code03_Largest1BorderedSquare {
             for (int j = 0; j < M; j++) {
 
                 //[i,j]是左上点
-                for (int k = 1; k <= Math.min(N - i, M - j); k++) {
-                    if (right[i][j] >= k && down[i][j] >= k && down[i][j + k - 1] >= k && right[i + k - 1][j] >= k) {
-                        ans = Math.max(ans, k * k);
+                for (int size = 1; size <= Math.min(N - i, M - j); size++) {
+                    if (right[i][j] >= size && down[i][j] >= size && down[i][j + size - 1] >= size && right[i + size - 1][j] >= size) {
+                        ans = Math.max(ans, size * size);
                     }
                 }
             }
