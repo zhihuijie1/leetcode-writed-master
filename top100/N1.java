@@ -2,7 +2,7 @@ package algorithmbasic.leetcode.top100;
 
 import java.util.HashMap;
 
-public class number1 {
+public class N1 {
     public int[] twoSum(int[] nums, int target) {
         //维护一个hashmap映射 - 数值 -> 索引
         HashMap<Integer,Integer> valToIndex = new HashMap<>();
