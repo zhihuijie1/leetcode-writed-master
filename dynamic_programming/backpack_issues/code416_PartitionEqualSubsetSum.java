@@ -1,10 +1,10 @@
 package algorithmbasic.leetcode.dynamic_programming.backpack_issues;
 
-public class code416_PartitionEqualSubsetSum {
+/*public class code416_PartitionEqualSubsetSum {
     public boolean canPartition(int[] nums) {
         
     }
-}
+}*/
 
 /*
 1：确定dp数组的含义以及dp数组下标的含义
