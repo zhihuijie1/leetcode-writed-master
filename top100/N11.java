@@ -1,5 +1,7 @@
 package algorithmbasic.leetcode.top100;
 
+import java.util.HashMap;
+
 public class N11 {
     public int maxArea(int[] height) {
         //双指针法从两边向内收缩
