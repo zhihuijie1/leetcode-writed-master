@@ -1,9 +1,8 @@
 package algorithmbasic.leetcode.dynamic_programming.backpack_issues;
 
 public class code416_PartitionEqualSubsetSum {
-
     public boolean canPartition(int[] nums) {
-
+        
     }
 }
 
