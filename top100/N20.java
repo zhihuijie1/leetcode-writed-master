@@ -10,7 +10,7 @@ public class N20 {
             if (str[i] == '{' || str[i] == '[' || str[i] == '(') {
                 validStack.push(str[i]);
             } else {
-                if(validStack.isEmpty()) {
+                if (validStack.isEmpty()) {
                     return false;
                 } else if (validStack.peek() == '{' && str[i] == '}'
                         || validStack.peek() == '(' && str[i] == ')'
