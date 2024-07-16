@@ -1,6 +1,6 @@
 package algorithmbasic.leetcode.dynamic_programming.backpack_issues;
 
-public class code416_PartitionEqualSubsetSum_F {
+public class N416_F {
     public boolean canPartition(int[] nums) {
         int N = nums.length;
         int sum = 0;

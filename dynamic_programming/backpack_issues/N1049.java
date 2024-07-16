@@ -1,5 +1,5 @@
+package algorithmbasic.leetcode.dynamic_programming.backpack_issues;
 public class N1049 {
-    public int lastStoneWeightII(int[] stones) {
         public int lastStoneWeightII(int[] stones) {
             int weightSum = 0;
             for(int i = 0; i < stones.length; i++) {
@@ -37,7 +37,6 @@ public class N1049 {
             return 0;
 
         }
-    }
 }
 /**
  * 1: 定dp数组以及下标的含义

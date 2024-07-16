@@ -1,3 +1,4 @@
+package algorithmbasic.leetcode.dynamic_programming.backpack_issues;
 public class backpack01_roll {
     public int testWeightBagProblem(int[] weight, int[] value, int bagSize) {
         int N = weight.length;
@@ -6,9 +7,11 @@ public class backpack01_roll {
         //初始化
         dp[0] = 0;
         //遍历顺序
+        //外层循环先遍历物品
         for (int i = 0; i < N; i++) {
+            //内层循环遍历背包大小
             for (int j = bagSize; j > weight[i] ; j--) {
-                dp[j] = Math.max(dp[j],dp[j - weight[i]] + value[i]);
+                dp[j] = Math.max(dp[j] , dp[j - weight[i]] + value[i]);
             }
         }
         return dp[bagSize];
@@ -52,4 +55,10 @@ public class backpack01_roll {
  *          同样的，二维dp数组，之所以可以从前往后，是因为，依赖的上一层的数据，依赖的数据不在本层，所以没有污染问题
  *
  * 5： 举例推导
+ */
+
+/**
+ * 其实可以发现如果把dp[i - 1]那一层拷贝到dp[i]上，表达式完全可以是：dp[i][j] = max(dp[i][j], dp[i][j - weight[i]] + value[i]);
+ * 与其把dp[i - 1]这一层拷贝到dp[i]上，不如只用一个一维数组了，只用dp[j]（一维数组，也可以理解是一个滚动数组）。
+ * dp[j] = max(dp[j], dp[j - weight[i]] + value[i]);
  */

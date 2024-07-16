@@ -1,3 +1,4 @@
+package algorithmbasic.leetcode.dynamic_programming.backpack_issues;
 public class backpack01 {
     public int testWeightBagProblem(int[] weight, int[] value, int bagSize) {
         int N = weight.length;
