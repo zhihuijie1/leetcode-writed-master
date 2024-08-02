@@ -1,4 +1,3 @@
-package algorithmbasic.leetcode.dynamic_programming.backpack_issues;
 public class CompletedBackpack {
     public int completedbackpack(int[] weight, int[] value,int backsize) {
         int N = weight.length;
